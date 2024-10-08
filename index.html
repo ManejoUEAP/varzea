@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equação de Volume - Floresta de Várzea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .logos {
+            margin-bottom: 30px;
+        }
+        .logos img {
+            width: 150px;
+            margin: 10px;
+        }
+        .equation {
+            font-size: 1.5rem;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: fit-content;
+            font-family: 'Georgia', serif;
+            color: #333;
+        }
+        .equation sup {
+            font-size: 1rem;
+            vertical-align: super;
+        }
+        .equation sub {
+            font-size: 1rem;
+            vertical-align: sub;
+        }
+        .equation span {
+            color: #0f0f0f;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Seção de Logos -->
+    <div class="logos">
+        <img src="grupo2.png" alt="Grupo de Pesquisa">
+        <img src="LAB2.png" alt="Laboratório">
+    </div>
+
+    <h1>Equação de Volume para Floresta de Várzea</h1>
+
+    <!-- Exibindo a Equação com Estilo Charmoso -->
+    <div class="equation">
+        V = exp(<span>−8,49</span> + <span>1,89</span> × ln(D) + <span>0,58</span> × ln(h<sub>m</sub>))
+    </div>
+
+    <p>Insira o Diâmetro a 1,30m  do solo(D) e a Altura comercial (hm) para calcular o volume (V).</p>
+
+    <!-- Entrada de dados -->
+    <label for="diametro">Diâmetro a 1,30 m do solo (D) em cm: </label>
+    <input type="number" id="diametro" placeholder="Digite o Diâmetro em centímetros" step="any"><br>
+
+    <label for="altura">Altura da árvore (hm) em m: </label>
+    <input type="number" id="altura" placeholder="Digite a Altura em metros" step="any"><br>
+
+    <!-- Botão de cálculo -->
+    <button onclick="calcularVolume()">Calcular Volume</button>
+
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+
+    <!-- Link para o artigo -->
+    <p>Para mais detalhes, acesse o <a href="https://revistas.ufpr.br/floresta/article/view/83115" target="_blank">artigo completo</a>.</p>
+
+    <!-- Script para cálculo -->
+    <script>
+        function calcularVolume() {
+            // Obtendo os valores de diâmetro (D) e altura (hm)
+            const D = parseFloat(document.getElementById('diametro').value);
+            const hm = parseFloat(document.getElementById('altura').value);
+
+            // Verificando se os valores são válidos
+            if (isNaN(D) || isNaN(hm) || D <= 0 || hm <= 0) {
+                document.getElementById('resultado').innerHTML = "Por favor, insira valores válidos para Diâmetro e Altura.";
+                return;
+            }
+
+            // Implementando a equação: V = exp(−8.49 + 1.89 * ln(D) + 0.58 * ln(hm))
+            const V = Math.exp(-8.49 + 1.89 * Math.log(D) + 0.58 * Math.log(hm));
+
+            // Exibindo o resultado
+            document.getElementById('resultado').innerHTML = `O volume estimado é: ${V.toFixed(4)} metros cúbicos.`;
+        }
+    </script>
+</body>
+</html>
